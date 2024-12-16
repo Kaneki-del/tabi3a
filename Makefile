@@ -2,13 +2,13 @@ CC = cc
 
 CFLAGS = -Wall -Wextra -Werror
 
-SRCS = 
+SRCS = ft_printf_utils.c ft_printf.c
 
 OBJS = $(SRCS:.c=.o)
 
 NAME = libftprintf.a
 
-INCLUDES = libft.h
+INCLUDES = ft_printf.h
 
 all: $(NAME)
 

@@ -1,7 +1,5 @@
 #include <unistd.h>
 
-#include <unistd.h>
-
 int	ft_putchar(char c)
 {
 	write(1, &c, 1);
@@ -10,7 +8,7 @@ int	ft_putchar(char c)
 
 int	ft_putnbr(int nb)
 {
-  int count;
+  int count = 0;
 	if (nb > 9)
 	{
 		ft_putnbr(nb / 10);
@@ -31,8 +29,6 @@ int	ft_putnbr(int nb)
   return count;
 }
 
-
-
 int ft_putstr(char *str) {
   int i;
 
@@ -42,4 +38,27 @@ int ft_putstr(char *str) {
     i++;
   }
   return i;
+}
+int put_hexa(unsigned long h, char size)
+{
+	int lent = 0;
+	char str[16] = "0123456789abcdef"; 
+	if (h >= 16)
+	{
+		lent += put_hexa((h / 16), size);
+		lent += put_hexa((h % 16), size);
+	}
+	else
+	{
+		if (h <= 9)
+			lent += ft_putchar(str[h]);
+		else
+		{
+			if (size == 'x')
+				lent += ft_putchar(h - 10 + 'a');
+			if (size == 'X')
+				lent += ft_putchar(h - 10 + 'A');
+		}
+	}
+	return (lent);
 }

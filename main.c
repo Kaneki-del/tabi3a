@@ -3,9 +3,7 @@
 
 int main()
 {
- char *str = "hello";
-  int i = 100;
-  char *s = "yes";
-  char c = 'P';
-  ft_printf("%%",str, i, s, c);
+ unsigned int test = 0x1F4B2D9C;
+ printf("%X\n", test);
+ ft_printf("%X", test);
 }
