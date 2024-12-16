@@ -5,20 +5,17 @@ int printer(char c, va_list va)
 {
   int count = 0;
   if (c == 's')
-    count =  ft_putstr(va_arg(va, char*));
+    count +=  ft_putstr(va_arg(va, char*));
   else if (c == 'd' || c == 'i')
-    count = ft_putnbr(va_arg(va, int));
+    count += ft_putnbr(va_arg(va, int));
   else if (c == 'c')
-    count = ft_putchar(va_arg(va, int));
+    count += ft_putchar(va_arg(va, int));
   else if (c == 'p')
-  {
-    ft_putstr("0x");
-    count = put_hexa(va_arg(va, unsigned long), 'x');
-  }
+    count += put_hexa(va_arg(va, unsigned long), 'x');
   else if (c == 'x')
-    count = put_hexa(va_arg(va, unsigned long), c);
+    count += put_hexa(va_arg(va, unsigned long), c);
   else if (c == 'X')
-    count = put_hexa(va_arg(va, unsigned long), c);
+    count += put_hexa(va_arg(va, unsigned long), c);
     
   return count;
 }

@@ -6,32 +6,31 @@ int	ft_putchar(char c)
 	return 1;
 }
 
-int	ft_putnbr(int nb)
+void	ft_putnbr(int n, int fd)
 {
-  int count = 0;
-	if (nb > 9)
+	long	nb;
+
+	if (fd < 0)
+		return ;
+	nb = n;
+	if (nb < 0)
 	{
-		ft_putnbr(nb / 10);
-		ft_putnbr(nb % 10);
+		ft_putchar('-');
+		nb *= -1;
 	}
-	else if (nb == -2147483648)
+	if (nb >= 10)
 	{
-		write(1, "-2147483648", 11);
+		ft_putnbr(nb / 10, fd);
+		nb = nb % 10;
 	}
-	else if (nb < 0)
-	{
-		count += ft_putchar('-');
-		nb = nb * -1;
-		ft_putnbr(nb);
-	}
-	else
-		count += ft_putchar(nb + 48);
-  return count;
+	ft_putchar(nb % 10 + '0');
 }
 
 int ft_putstr(char *str) {
-  int i;
+  int i = 0;
 
+  if (!str)
+  	i += ft_putstr("(null)");
   i = 0;
   while (str[i]) {
     write(1, &str[i], 1);
@@ -39,7 +38,7 @@ int ft_putstr(char *str) {
   }
   return i;
 }
-int put_hexa(unsigned long h, char size)
+int put_hexa(unsigned int h, char size)
 {
 	int lent = 0;
 	char str[16] = "0123456789abcdef"; 
@@ -59,6 +58,10 @@ int put_hexa(unsigned long h, char size)
 			if (size == 'X')
 				lent += ft_putchar(h - 10 + 'A');
 		}
-	}
+print_pointer(unsigned long p)
+{
+	int total = 0;
+	if (p == 0)
+		ft_putstr("0x");
 	return (lent);
 }
