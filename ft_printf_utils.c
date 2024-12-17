@@ -1,14 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sait-nac <sait-nac@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/17 15:57:51 by sait-nac          #+#    #+#             */
+/*   Updated: 2024/12/17 15:57:52 by sait-nac         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "ft_printf.h"
 #include <unistd.h>
 
-int	ft_putchar(char c)
-{
-	write(1, &c, 1);
-	return 1;
-}
 int	ft_putnbr(int n)
 {
 	long	nb;
-	int numbers = 0;
+	int		numbers;
+
+	numbers = 0;
 	nb = n;
 	if (nb < 0)
 	{
@@ -24,22 +34,29 @@ int	ft_putnbr(int n)
 	return (numbers);
 }
 
-int ft_putstr(char *str) {
-  int i = 0;
-
-  if (!str)
-  	return i += ft_putstr("(null)");
-  i = 0;
-  while (str[i]) {
-    write(1, &str[i], 1);
-    i++;
-  }
-  return i;
-}
-int put_hexa(unsigned int h, char size)
+int	ft_putstr(char *str)
 {
-	int lent = 0;
-	char str[16] = "0123456789abcdef"; 
+	int	i;
+
+	i = 0;
+	if (!str)
+		return (i += ft_putstr("(null)"));
+	i = 0;
+	while (str[i])
+	{
+		write(1, &str[i], 1);
+		i++;
+	}
+	return (i);
+}
+
+int	put_hexa(unsigned int h, char size)
+{
+	int		lent;
+	char	*str;
+
+	str = "0123456789abcdef";
+	lent = 0;
 	if (h >= 16)
 	{
 		lent += put_hexa((h / 16), size);
@@ -57,13 +74,16 @@ int put_hexa(unsigned int h, char size)
 				lent += ft_putchar(h - 10 + 'A');
 		}
 	}
-	return lent;
+	return (lent);
 }
 
-int printp(unsigned long h)
-	{
-	int lent = 0;
-	char str[16] = "0123456789abcdef"; 
+int	printp(unsigned long h)
+{
+	int		lent;
+	char	*str;
+
+	str = "0123456789abcdef";
+	lent = 0;
 	if (h >= 16)
 	{
 		lent += printp((h / 16));
@@ -71,11 +91,14 @@ int printp(unsigned long h)
 	}
 	else if (h < 16)
 		lent += ft_putchar(str[h]);
-	return lent;
+	return (lent);
 }
-int ft_put_unsign_int(unsigned int nb)
+
+int	ft_put_unsign_int(unsigned int nb)
 {
-	int numbers = 0;
+	int	numbers;
+
+	numbers = 0;
 	if (nb >= 0 && nb < 10)
 		numbers += ft_putchar(nb + '0');
 	else

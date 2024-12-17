@@ -1,27 +1,40 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: sait-nac <sait-nac@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/12/17 15:58:22 by sait-nac          #+#    #+#              #
+#    Updated: 2024/12/17 15:58:23 by sait-nac         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+SRC = ft_printf.c ft_printf_utils.c
+
+OBJ = $(SRC:.c=.o)
+CFLAGS = -Wall -Werror -Wextra
+INCLUDE = ft_printf.h
+
 CC = cc
-
-CFLAGS = -Wall -Wextra -Werror
-
-SRCS = ft_printf_utils.c ft_printf.c
-
-OBJS = $(SRCS:.c=.o)
+AR = ar -rcs 
 
 NAME = libftprintf.a
 
-INCLUDES = ft_printf.h
-
 all: $(NAME)
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJ)
+	$(AR) $(NAME) $(OBJ)
 
-%.o: %.c $(INCLUDES)
+%.o: %.c $(INCLUDE)
 	$(CC) $(CFLAGS) -c $< -o $@
-	ar r $(NAME) $@
 
 clean:
-	rm -f $(OBJS) $(BOBJS)
+	rm -f $(OBJ) 
 
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(NAME) 
 
-re: fclean all
+re: fclean $(NAME)
+
+.PHONY: clean
