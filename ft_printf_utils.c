@@ -58,10 +58,20 @@ int put_hexa(unsigned int h, char size)
 			if (size == 'X')
 				lent += ft_putchar(h - 10 + 'A');
 		}
-print_pointer(unsigned long p)
-{
-	int total = 0;
-	if (p == 0)
-		ft_putstr("0x");
-	return (lent);
+	}
+	return lent;
+}
+
+int printp(unsigned long h)
+	{
+	int lent = 0;
+	char str[16] = "0123456789abcdef"; 
+	if (h >= 16)
+	{
+		lent += printp((h / 16));
+		lent += printp((h % 16));
+	}
+	else if (h < 16)
+		lent += ft_putchar(str[h]);
+	return lent;
 }
