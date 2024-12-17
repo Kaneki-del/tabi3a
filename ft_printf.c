@@ -63,6 +63,8 @@ int	ft_printf(const char *test, ...)
 	{
 		if (test[i] == '%')
 		{
+			if (test[i + 1] == '\0')
+				break ;
 			count += printer(test[++i], va);
 		}
 		else
