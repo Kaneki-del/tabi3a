@@ -11,7 +11,7 @@ int printer(char c, va_list va)
   else if (c == 'c')
     count += ft_putchar(va_arg(va, int));
   else if (c == 'p')
-    count += printp(va_arg(va,void *));
+    count += printp((size_t)va_arg(va,void *));
   else if (c == 'x')
     count += put_hexa(va_arg(va, unsigned long), c);
   else if (c == 'X')

@@ -4,5 +4,8 @@
 #include "ft_printf.h"
 int main()
 {
- ft_printf("%p %p", 0, 0);
+ 
+ int i = ft_printf("NULL %s NULL ", NULL);
+ //t_printf("NULL %s NULL ", NULL);
+ printf("%d", i);
 }

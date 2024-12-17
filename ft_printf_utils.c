@@ -6,31 +6,31 @@ int	ft_putchar(char c)
 	return 1;
 }
 
-void	ft_putnbr(int n, int fd)
+void	ft_putnbr(int n)
 {
-	long	nb;
+	long	long_n;
 
-	if (fd < 0)
-		return ;
-	nb = n;
-	if (nb < 0)
+	int lent = 0;
+	long_n = n;
+	if (long_n < 0)
 	{
-		ft_putchar('-');
-		nb *= -1;
+		lent += ft_putchar('-');
+		long_n *= -1;
 	}
-	if (nb >= 10)
+	if (long_n >= 0 && long_n < 10)
+		lent += ft_putchar((long_n + '0'));
+	else
 	{
-		ft_putnbr(nb / 10, fd);
-		nb = nb % 10;
+		ft_putnbr(long_n / 10);
+		lent += ft_putchar(((long_n % 10) + '0'));
 	}
-	ft_putchar(nb % 10 + '0');
 }
 
 int ft_putstr(char *str) {
   int i = 0;
 
   if (!str)
-  	i += ft_putstr("(null)");
+  	return i += ft_putstr("(null)");
   i = 0;
   while (str[i]) {
     write(1, &str[i], 1);
@@ -62,9 +62,10 @@ int put_hexa(unsigned int h, char size)
 	return lent;
 }
 
-int printp(unsigned long h)
+int printp(size_t h)
 	{
 	int lent = 0;
+	lent += ft_putstr("0x");
 	char str[16] = "0123456789abcdef"; 
 	if (h >= 16)
 	{
