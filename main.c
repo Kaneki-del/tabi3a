@@ -1,11 +1,10 @@
-#include <stdio.h>
-#include <string.h>
-#include <libc.h>
 #include "ft_printf.h"
+#include <stdio.h>
 int main()
 {
- 
- int i = ft_printf("NULL %s NULL ", NULL);
- //t_printf("NULL %s NULL ", NULL);
- printf("%d", i);
+  char *str = "testkl";
+  char *ptr = str;
+  int i =printf("the original: %p\n", ptr);
+   int j = ft_printf("myn is :%p", ptr);
+  printf("lent of original %d, lent of myn %d", i, j);
 }

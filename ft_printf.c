@@ -10,8 +10,13 @@ int printer(char c, va_list va)
     count += ft_putnbr(va_arg(va, int));
   else if (c == 'c')
     count += ft_putchar(va_arg(va, int));
+  else if (c == 'u')
+    count += ft_put_unsign_int(va_arg(va, int));
   else if (c == 'p')
-    count += printp((size_t)va_arg(va,void *));
+	{ 
+	  count += ft_putstr("0x");
+    count += printp((unsigned long)va_arg(va,void *));
+  }
   else if (c == 'x')
     count += put_hexa(va_arg(va, unsigned long), c);
   else if (c == 'X')
